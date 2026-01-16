@@ -1,5 +1,4 @@
 package com.sky.mapper;
-
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.github.pagehelper.Page;
 import com.sky.dto.EmployeePageQueryDTO;
@@ -23,4 +22,5 @@ public interface EmployeeMapper extends BaseMapper<Employee> {
     Page<Employee> pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
 
     void MyUpdate(Employee employee);
+
 }

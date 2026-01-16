@@ -110,7 +110,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         return new PageResult(total,records);
     }
 
-    //启用禁用员工账号
+    //启用禁用员工账号,其中的更新操作通用
     @Override
     public void startOrStop(Integer status, Long id) {
 
@@ -121,6 +121,42 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .build();
 
         employeeMapper.MyUpdate(employee);
+    }
+
+    //修改员工信息
+    @Override
+    public void MyUpdate(EmployeeDTO employeeDTO) {
+        Employee employee =new Employee();
+
+        BeanUtils.copyProperties(employeeDTO,employee);
+
+        employee.setUpdateTime(LocalDateTime.now());
+        employee.setUpdateUser(BaseContext.getCurrentId());
+
+        employeeMapper.MyUpdate( employee);
+
+    }
+
+    //根据id查询员工
+    @Override
+    public EmployeeDTO getById(Long id) {
+
+        if (id == null || id <= 0) {
+            return null; // 或返回自定义的“空DTO”，让Controller处理
+        }
+
+
+        Employee employee = employeeMapper.selectById(id);
+
+        if (employee == null) {
+            return null;
+        }
+
+        EmployeeDTO employeeDTO = new EmployeeDTO();
+
+        BeanUtils.copyProperties(employee,employeeDTO);
+
+        return employeeDTO;
     }
 
 

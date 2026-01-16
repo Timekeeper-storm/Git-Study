@@ -22,6 +22,22 @@ mybatis:
     #开启驼峰命名
     map-underscore-to-camel-case: true
 
+
+# MyBatis-Plus 全局配置（强制所有实体用数据库自增ID）
+#mybatis-plus:
+#  global-config:
+#    db-config:
+#      # 1. 全局主键策略：强制用数据库自增（优先级高于实体注解）
+#      id-type: auto
+#      # 2. 全局表前缀（如果你的表名有前缀比如t_employee，这里配t_，没有就不配）
+#      # table-prefix: t_
+#  configuration:
+#    # 3. 打印SQL（方便验证ID是否自增）
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    # 4. 下划线转驼峰（和数据库字段对齐，避免字段映射错误）
+#    map-underscore-to-camel-case: true
+
+
 logging:
   level:
     com:

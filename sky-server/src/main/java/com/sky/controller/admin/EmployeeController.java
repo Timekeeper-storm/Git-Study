@@ -108,4 +108,29 @@ public class EmployeeController  {
         return Result.success();
     }
 
+
+    @PutMapping
+    @ApiOperation("编辑员工信息")
+    public Result<EmployeeDTO> edit(@RequestBody EmployeeDTO employeeDTO){
+        log.info("编辑员工信息：{}", employeeDTO);
+        employeeService.MyUpdate(employeeDTO);
+        return Result.success();
+    }
+
+    @GetMapping("{id}")
+    @ApiOperation("根据id查询员工信息")
+    public Result<EmployeeDTO> getById(@PathVariable Long id){
+
+
+        log.info("根据id查询员工信息：{}", id);
+        EmployeeDTO employeeDTO = employeeService.getById(id);
+
+        if (employeeDTO == null) {
+            return Result.error("该员工不存在或已被删除");
+        }
+        return Result.success(employeeDTO);
+    }
+
+
+
 }
