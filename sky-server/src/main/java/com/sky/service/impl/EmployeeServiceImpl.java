@@ -95,6 +95,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     }
 
+    //员工分页查询
     @Override
     public PageResult pageQuery(EmployeePageQueryDTO employeePageQueryDTO) {
         //分页查询,要的参数是页码和每页记录数
@@ -107,6 +108,19 @@ public class EmployeeServiceImpl implements EmployeeService {
         List records=page.getResult();
 
         return new PageResult(total,records);
+    }
+
+    //启用禁用员工账号
+    @Override
+    public void startOrStop(Integer status, Long id) {
+
+
+        Employee employee =Employee.builder()
+                .status(status)
+                .id(id)
+                .build();
+
+        employeeMapper.MyUpdate(employee);
     }
 
 
