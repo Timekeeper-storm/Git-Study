@@ -41,7 +41,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         category.setCreateTime(LocalDateTime.now());
         category.setUpdateTime(LocalDateTime.now());
-        category.setStatus(1);
+        category.setStatus(0);
 
         category.setCreateUser(BaseContext.getCurrentId());
         category.setUpdateUser(BaseContext.getCurrentId());
@@ -67,6 +67,7 @@ public class CategoryServiceImpl implements CategoryService {
     public void delete(Long id) {
         categoryMapper.deleteById(id);
     }
+
 
     @Override
     public void update(CategoryDTO categoryDTO) {
